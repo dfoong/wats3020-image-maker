@@ -40,10 +40,13 @@ class ImageMaker {
         this.topTextInput = document.querySelector('input[name="topText"]');
 
         this.bottomTextInput = document.querySelector('input[name="bottomText"]');
-
-        // NOTE: If you add additional form fields to modify other aspects of
-        // the image, then you will need to make attributes for each of those
-        // elements here.
+      
+        this.imageHeightInput = document.querySelector('select[name="imageHeight"]');
+      
+        this.imageWidthInput = document.querySelector('select[name="imageWidth"]');
+      
+      
+        // DF adding extra form / functions go here in the constructor (before the })
     }
     drawPreview(){
         // DF: Background image is based on user selection. Algebra substitution method for '.value'
@@ -59,10 +62,12 @@ class ImageMaker {
     }
     downloadImage(){
         this.drawPreview();
-        generateImage();
+      console.log("yoooooo! testing");
+        generateImage("image-preview", this.imageHeightInput.value, this.imageWidthInput.value);
     }
 }
 
+//DF: Let can't be used anywhere else
 let imageMaker = new ImageMaker();
 
 //////////////////////////////////////////////////
@@ -74,7 +79,8 @@ let imageMaker = new ImageMaker();
 // It is possible to use the `height` and `width` parameters to alter the size
 // of the rendered image.
 function generateImage(elementID="image-preview", height="800px", width="1280px"){
-    let htmlTemplate = document.getElementById(elementID);
+  console.log(height,width)  
+  let htmlTemplate = document.getElementById(elementID);
     htmlTemplate.style.height = height;
     htmlTemplate.style.width = width;
     let imageName = "image_" + Date.now();
